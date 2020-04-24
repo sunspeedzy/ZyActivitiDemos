@@ -1,0 +1,16 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>zy.activiti.demos</groupId>
+    <artifactId>ZyActivitiDemos</artifactId>
+    <version>0.0.1</version>
+  </parent>
+  <groupId>org.crazyit.activiti</groupId>
+  <artifactId>CrazyBookDemos</artifactId>
+  <packaging>pom</packaging>
+  <name>${project.artifactId}</name>
+  <description>《疯狂工作流讲义》的demo代码</description>
+  <modules>
+  	<module>demo02</module>
+  </modules>
+</project>
