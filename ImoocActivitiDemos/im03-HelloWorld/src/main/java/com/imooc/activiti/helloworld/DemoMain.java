@@ -30,6 +30,11 @@ import com.google.common.collect.Maps;
 /**
  * 启动类
  * 
+ * 启动方式：
+ * 1. 在Eclipse里直接运行该程序
+ * 2. 在 ZyActivitDemos的pom.xml 和 im03-HelloWorld的pom.xml 中配置了 spring-boot-starter 后，
+ *    在 im03-HelloWorld 目录下使用 mvn spring-boot:run 的命令启动
+ * 
  * @author zhangyan
  * @create 2020-04-25
  */
