@@ -12,13 +12,13 @@
   
   <!-- 配置版本 -->
   <properties>
-    <spring.version>4.3.17.RELEASE</spring.version>
+    <spring.version>4.3.18.RELEASE</spring.version>
     <mysql.version>5.1.42</mysql.version>
     <activiti.version>6.0.0</activiti.version>
     <mybatis.version>3.4.6</mybatis.version>
     <!-- 注意只能使用2.0以下的版本 -->
     <log4j.version>1.2.17</log4j.version>
-    <slf4j.version>1.7.25</slf4j.version>
+    <slf4j.version>1.7.6</slf4j.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -40,6 +40,7 @@
         <artifactId>mysql-connector-java</artifactId>
         <version>${mysql.version}</version>
       </dependency>
+      <!-- Spring -->
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-aspects</artifactId>
@@ -78,7 +79,7 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-orm</artifactId>
-        <version>4.3.17.RELEASE</version>
+        <version>${spring.version}</version>
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
@@ -93,11 +94,11 @@
         <version>${mybatis.version}</version>
       </dependency>
       <!-- log4j -->
-      <dependency>
+      <!-- <dependency>
         <groupId>log4j</groupId>
         <artifactId>log4j</artifactId>
         <version>${log4j.version}</version>
-      </dependency>
+      </dependency> -->
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
