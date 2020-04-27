@@ -12,5 +12,6 @@
   <description>《疯狂工作流讲义》的demo代码</description>
   <modules>
   	<module>demo02</module>
+  	<module>demo04</module>
   </modules>
 </project>

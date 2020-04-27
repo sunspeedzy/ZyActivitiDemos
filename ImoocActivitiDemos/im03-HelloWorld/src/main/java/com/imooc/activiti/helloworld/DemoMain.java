@@ -54,6 +54,9 @@ public class DemoMain {
 		// 处理流程任务
 		processTask(processEngine, processInstance);
 
+		// 关闭流程引擎
+		// 如果数据库配置策略是 create-drop，则必须调用此方法，否则不会drop表
+		processEngine.close();
 		LOGGER.info("结束我们的程序");
 	}
 
@@ -131,7 +134,10 @@ public class DemoMain {
 	 * @return
 	 */
 	private static ProcessEngine getProcessEngine() {
+		// 创建流程引擎配置，不读取任何Activiti配置文件，流程引擎配置的全部属性都是用默认值
 		ProcessEngineConfiguration cfg = ProcessEngineConfiguration.createStandaloneInMemProcessEngineConfiguration();
+		// 启动Activiti
+		// 调用此方法创建流程引擎，这时Activiti的数据库表才会按照配置的策略进行创建
 		ProcessEngine processEngine = cfg.buildProcessEngine();
 		String name = processEngine.getName();
 		String version = ProcessEngine.VERSION;
