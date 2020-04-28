@@ -12,6 +12,7 @@
   <description>慕课网《Activiti6.0工作流引擎深度解析与实战》的demo</description>
   <modules>
   	<module>im03-HelloWorld</module>
+  	<module>im04-samples</module>
   </modules>
   
   <dependencyManagement>

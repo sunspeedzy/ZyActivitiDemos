@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 只配置相应的数据库属性 -->
+	<bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+		<!-- <property name="databaseSchemaUpdate" value="create-drop"/> -->
+		<property name="databaseSchemaUpdate" value="true"/>
+		<!-- <property name="dataSource" ref="dataSource"/> -->
+		<property name="dataSource" ref="dataSourceHikari"/>
+		<!-- 是否使用历史数据和身份数据，设置为 false，则不执行相关表的DDL生成表 -->
+		<property name="dbHistoryUsed" value="false"/>
+		<property name="dbIdentityUsed" value="false"/>
+		<!-- 要执行CRUD操作的Activiti表，表名必须符合指定的前缀，适合环境中已经生成了符合前缀要求的表的情况。
+		databaseSchemaUpdate不为false时依然会生成默认名字的Activiti表 -->
+		<!-- <property name="databaseTablePrefix" value="t_"/> -->
+	</bean>
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="url" value="jdbc:mysql://localhost:3306/act?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false" />
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="username" value="root" />
+		<property name="password" value="welcome1" />
+		<property name="initialSize" value="1"/>
+		<property name="maxActive" value="10"/>
+		<property name="filters" value="stat,slf4j"/>
+	</bean>
+	<bean id="dataSourceHikari" class="com.zaxxer.hikari.HikariDataSource">
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/act?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false" />
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="username" value="root" />
+		<property name="password" value="welcome1" />
+		<property name="maximumPoolSize" value="20"/>
+	</bean>
+</beans>
