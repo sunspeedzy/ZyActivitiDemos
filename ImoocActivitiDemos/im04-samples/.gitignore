@@ -2,3 +2,6 @@
 /.project
 /.settings
 /im04-samples-config/.settings
+/im04-samples-config/target
+/im04-samples-config/.classpath
+/im04-samples-config/.project
