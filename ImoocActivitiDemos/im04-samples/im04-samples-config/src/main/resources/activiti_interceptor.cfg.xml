@@ -5,7 +5,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<!-- 开启 Event Logging -->
 	<bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
-		<property name="commandInvoker" ref="commandInvoker"/>
+		<!-- <property name="commandInvoker" ref="commandInvoker"/> -->
+		<property name="enableVerboseExecutionTreeLogging" value="true"/>
 		<!-- 配置 customPreCommandInterceptors-->
 		<property name="customPreCommandInterceptors">
 		 <list>
@@ -13,6 +14,11 @@
 		 </list>
 		</property>
 		<!-- 配置 customPostCommandInterceptors-->
+		<property name="customPostCommandInterceptors">
+		 <list>
+		   <bean class="com.imooc.activiti.interceptor.DurationCommandInterceptor" />
+		 </list>
+		</property>
 		
 	</bean>
 
