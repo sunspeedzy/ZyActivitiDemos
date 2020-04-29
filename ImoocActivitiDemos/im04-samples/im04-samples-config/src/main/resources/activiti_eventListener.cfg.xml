@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 开启 Event Logging -->
+	<bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+		<!-- <property name="commandInvoker" ref="commandInvoker"/> -->
+		<!-- 使用  eventListeners 配置监听器-->
+		<property name="eventListeners">
+		  <list>
+		    <!-- <bean class="com.imooc.activiti.event.ProcessEventListener"/> -->
+		    <bean class="com.imooc.activiti.event.CustomEventListener"/>
+		  </list>
+		</property>
+		<!-- 使用  typedEventListerners 配置监听器，只在 PROCESS_STARTED事件发生时才被触发-->
+		<property name="typedEventListeners">
+		  <map>
+		    <entry key="PROCESS_STARTED">
+		      <list>
+		        <bean class="com.imooc.activiti.event.ProcessEventListener"/>
+		      </list>
+		    </entry>
+		  </map>
+		</property>
+	</bean>
+
+	<bean id="commandInvoker" class="com.imooc.activiti.interceptor.MDCCommandInvoker">
+	
+	</bean>
+</beans>

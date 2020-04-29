@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 开启 Event Logging -->
+	<bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+		<property name="commandInvoker" ref="commandInvoker"/>
+		<!-- 配置 customPreCommandInterceptors-->
+		<property name="customPreCommandInterceptors">
+		 <list>
+		   <bean class="com.imooc.activiti.interceptor.DurationCommandInterceptor" />
+		 </list>
+		</property>
+		<!-- 配置 customPostCommandInterceptors-->
+		
+	</bean>
+
+	<bean id="commandInvoker" class="com.imooc.activiti.interceptor.MDCCommandInvoker">
+	
+	</bean>
+</beans>
