@@ -140,5 +140,7 @@ public class RepositoryServiceTest {
 		LOGGER.info("从流程存储服务中删除候选用户和用户组");
 		repositoryService.deleteCandidateStarterUser(processDefinition.getId(), "user");
 		repositoryService.deleteCandidateStarterGroup(processDefinition.getId(), "groupM");
+		LOGGER.info("identityLink.size = {}",
+				repositoryService.getIdentityLinksForProcessDefinition(processDefinition.getId()).size());
 	}
 }
