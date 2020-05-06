@@ -15,6 +15,8 @@
   	<module>im03-HelloWorld</module>
   	<module>im04-samples</module>
     <module>im05-coreapi</module>
+    <module>im06-dbentity</module>
+    <module>im07-bmpn20</module>
   </modules>
   
   <dependencyManagement>
