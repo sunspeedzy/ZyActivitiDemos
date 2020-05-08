@@ -18,9 +18,9 @@
 				<timeDuration>PT5S</timeDuration>
 			</timerEventDefinition>
 		</boundaryEvent>
-		<userTask id="timeoutTask" name="Timeout Task"></userTask>
-		<endEvent id="end1"></endEvent>
-		<endEvent id="end2"></endEvent>
+		<userTask id="timeoutTask" name="Timeout Task"/>
+		<endEvent id="end1"/>
+		<endEvent id="end2"/>
 
 		<sequenceFlow sourceRef="startEvent" targetRef="commonTask"/>
 		<sequenceFlow sourceRef="commonTask" targetRef="end1"/>

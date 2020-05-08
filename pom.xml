@@ -117,23 +117,28 @@
         <version>2.6.1</version>
       </dependency>
       <!-- c3p0 -->
-	  <dependency>
-	    <groupId>com.mchange</groupId>
-	    <artifactId>c3p0</artifactId>
-	    <version>0.9.5.5</version>
-	  </dependency>
-	  <!-- dbcp -->
-	  <dependency>
-		<groupId>org.apache.commons</groupId>
-		<artifactId>commons-dbcp2</artifactId>
-		<version>2.7.0</version>
-	  </dependency>
-	  <!-- Druid -->
-	  <dependency>
-	    <groupId>com.alibaba</groupId>
-	    <artifactId>druid</artifactId>
-	    <version>1.1.22</version>
-	  </dependency>
+	    <dependency>
+	      <groupId>com.mchange</groupId>
+	      <artifactId>c3p0</artifactId>
+	      <version>0.9.5.5</version>
+	    </dependency>
+	    <!-- dbcp -->
+	    <dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.7.0</version>
+	    </dependency>
+	    <!-- Druid -->
+	    <dependency>
+	      <groupId>com.alibaba</groupId>
+	      <artifactId>druid</artifactId>
+	      <version>1.1.22</version>
+	    </dependency>
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-all</artifactId>
+        <version>2.4.5</version>
+      </dependency>
       <!-- mybatis -->
       <dependency>
         <groupId>org.mybatis</groupId>
@@ -178,6 +183,11 @@
             <source>1.8</source>
             <target>1.8</target>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>2.2.0.RELEASE</version>
         </plugin>
       </plugins>
     </pluginManagement>

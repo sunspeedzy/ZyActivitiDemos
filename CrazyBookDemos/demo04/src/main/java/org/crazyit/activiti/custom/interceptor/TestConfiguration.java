@@ -8,9 +8,11 @@ import org.activiti.engine.impl.interceptor.CommandInterceptor;
 
 /**
  * 自定义配置类
+ * @author zhangyan_g
  */
 public class TestConfiguration extends ProcessEngineConfigurationImpl {
 	
+	@Override
 	public CommandInterceptor createTransactionInterceptor() {
 		// 不实现事务拦截器
 		return null;
@@ -19,6 +21,7 @@ public class TestConfiguration extends ProcessEngineConfigurationImpl {
 	/**
 	 * 重写初始化命令拦截器方法
 	 */
+	@Override
 	public void initCommandInterceptors() {
 		// 为父类的命令集合添加拦截器
 		customPreCommandInterceptors = new ArrayList<CommandInterceptor>();
