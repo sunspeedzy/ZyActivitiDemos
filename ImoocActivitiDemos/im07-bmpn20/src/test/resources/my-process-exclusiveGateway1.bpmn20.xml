@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn"
+	xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+	xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema"
+	expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+
+	<process id="my-process">
+
+		<startEvent id="start" />
+		<sequenceFlow id="flow1" sourceRef="start" targetRef="exclusivegateway1" />
+		<exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"/>
+		<userTask id="usertask1" name="精英" />
+		<userTask id="usertask2" name="优先" />
+		<userTask id="usertask3" name="普通" />
+
+	  <!--条件表达式只支持EL表达式-->
+		<sequenceFlow id="flow2" sourceRef="exclusivegateway1" targetRef="usertask1">
+			<conditionExpression>
+				<![CDATA[
+					${score >= 90}
+				]]>
+			</conditionExpression>
+		</sequenceFlow>
+		<sequenceFlow id="flow3" sourceRef="exclusivegateway1" targetRef="usertask2">
+			<conditionExpression>
+				<![CDATA[
+				  ${score >= 75 && score < 90}
+				]]>
+			</conditionExpression>
+		</sequenceFlow>
+		<sequenceFlow sourceRef="exclusivegateway1" targetRef="usertask3"/>
+
+		<sequenceFlow sourceRef="usertask1" targetRef="end"/>
+		<sequenceFlow sourceRef="usertask2" targetRef="end"/>
+		<sequenceFlow sourceRef="usertask3" targetRef="end"/>
+
+		<endEvent id="end" />
+
+	</process>
+
+</definitions>

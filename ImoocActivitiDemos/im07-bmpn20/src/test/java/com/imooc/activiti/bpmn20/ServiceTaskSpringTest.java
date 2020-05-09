@@ -1,6 +1,7 @@
 package com.imooc.activiti.bpmn20;
 
 import com.google.common.collect.Maps;
+import com.imooc.activiti.example.MyJavaBean;
 import com.imooc.activiti.example.MyJavaDelegate;
 import org.activiti.engine.ActivitiEngineAgenda;
 import org.activiti.engine.HistoryService;
@@ -26,10 +27,10 @@ import java.util.Map;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * 测试 执行一个由Spring Bean配置的JavaDelegate对象表达式
- * 1.
- * 2.
- * 3.
+ * 测试内容
+ * 1.执行调用方法表达式和值表达式
+ * 2.显示地传入 MyJavaDelegate实例 替换Spring的Bean配置
+ * 3.ServiceTask中执行调用方法表达式和值表达式
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:activiti-context.xml")
@@ -45,7 +46,7 @@ public class ServiceTaskSpringTest {
      */
     @Test
     @Deployment(resources = {"my-process-servicetask4.bpmn20.xml"})
-    public void testServiceTask1() {
+    public void testServiceTask41() {
         ProcessInstance processInstance = activitiRule.getRuntimeService()
                 .startProcessInstanceByKey("my-process");
 
@@ -65,7 +66,7 @@ public class ServiceTaskSpringTest {
      */
     @Test
     @Deployment(resources = {"my-process-servicetask4.bpmn20.xml"})
-    public void testServiceTask2() {
+    public void testServiceTask42() {
         // 将 MyJavaDelegate 实例作为参数值，显示地传给流程，
         // 通过这种方式替换SpringContext中配置的单例bean
         Map<String, Object> variables = Maps.newHashMap();
@@ -79,6 +80,32 @@ public class ServiceTaskSpringTest {
                 activitiRule.getHistoryService()
                         .createHistoricActivityInstanceQuery()
                         .orderByHistoricActivityInstanceId().asc()
+                        .listPage(0, 100);
+        for (HistoricActivityInstance activityInstance : activityInstances) {
+            LOGGER.info("执行的Activiti = {}", activityInstance);
+        }
+    }
+
+    /**
+     * 测试 ServiceTask中执行调用方法表达式和值表达式
+     */
+    @Test
+    @Deployment(resources = {"my-process-servicetask5.bpmn20.xml"})
+    public void testServiceTask5() {
+        // 将 MyJavaBean 实例作为参数值，显示地传给流程，
+        // 通过这种方式可以无需在 activiti-context.xml 中配置bean
+        Map<String, Object> variables = Maps.newHashMap();
+        MyJavaBean myJavaBean = new MyJavaBean("测试");
+
+        LOGGER.info("创建的 myJavaBean = {}", myJavaBean);
+        variables.put("myJavaBean", myJavaBean);
+
+        ProcessInstance processInstance = activitiRule.getRuntimeService()
+                .startProcessInstanceByKey("my-process", variables);
+        List<HistoricActivityInstance> activityInstances =
+                activitiRule.getHistoryService()
+                        .createHistoricActivityInstanceQuery()
+                        .orderByHistoricActivityInstanceEndTime().asc()
                         .listPage(0, 100);
         for (HistoricActivityInstance activityInstance : activityInstances) {
             LOGGER.info("执行的Activiti = {}", activityInstance);
