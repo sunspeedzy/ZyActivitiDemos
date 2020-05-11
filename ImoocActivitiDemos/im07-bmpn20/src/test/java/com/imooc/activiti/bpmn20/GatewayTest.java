@@ -15,10 +15,8 @@ import java.util.Map;
 
 /**
  * 测试
- * 1.
- * 2.
- * 3.
- * 4.
+ * 1. 单一网关
+ * 2. 并行网关
  */
 public class GatewayTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(GatewayTest.class);
@@ -52,7 +50,7 @@ public class GatewayTest {
     }
 
     /**
-     * 测试
+     * 测试并行网关
      */
     @Test
     @Deployment(resources = {"my-process-parallelGateway1.bpmn20.xml"})

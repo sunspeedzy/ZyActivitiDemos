@@ -9,20 +9,15 @@
 	<process id="my-process">
 
 		<startEvent id="start" />
-		<subProcess id="subProcess">
-			<startEvent id="startSub"/>
-			<parallelGateway id="parallelStart"/>
-			<serviceTask id="pay" name="确认支付" activiti:class="com.imooc.activiti.example.MyPayJavaDelegate"/>
-			<serviceTask id="take" name="确认收货" activiti:class="com.imooc.activiti.example.MyTakeJavaDelegate"/>
-			<parallelGateway id="parallelEnd"/>
-			<endEvent id="endSub"/>
-			<sequenceFlow sourceRef="startSub" targetRef="parallelStart"/>
-			<sequenceFlow sourceRef="parallelStart" targetRef="pay"/>
-			<sequenceFlow sourceRef="parallelStart" targetRef="take"/>
-			<sequenceFlow sourceRef="pay" targetRef="parallelEnd"/>
-			<sequenceFlow sourceRef="take" targetRef="parallelEnd"/>
-			<sequenceFlow sourceRef="parallelEnd" targetRef="endSub"/>
-		</subProcess>
+		<callActivity id="callactivity" calledElement="my-process-check-order">
+			<extensionElements>
+				<!-- 调用子流程的入参，只有入参指定的变量才能被传入到调用式子流程中 -->
+				<activiti:in source="errorflag" target="errorflag" />
+				<!-- 子流程的返回值 -->
+				<activiti:out source="key1" target="key1"/>
+			</extensionElements>
+		</callActivity>
+
 		<boundaryEvent id="boundary" attachedToRef="subProcess">
 			<errorEventDefinition errorRef="bpmnError"/>
 		</boundaryEvent>
@@ -30,8 +25,8 @@
 		<userTask id="orderError" name="异常处理"/>
 		<endEvent id="end" />
 
-		<sequenceFlow sourceRef="start" targetRef="subProcess"/>
-		<sequenceFlow sourceRef="subProcess" targetRef="orderComplete"/>
+		<sequenceFlow sourceRef="start" targetRef="callactivity"/>
+		<sequenceFlow sourceRef="callactivity" targetRef="orderComplete"/>
 		<sequenceFlow sourceRef="boundary" targetRef="orderError"/>
 		<sequenceFlow sourceRef="orderComplete" targetRef="end"/>
 		<sequenceFlow sourceRef="orderError" targetRef="end"/>
