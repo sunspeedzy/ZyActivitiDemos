@@ -18,7 +18,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Activiti与Spring集成 测试
+ * Activiti与Spring Framework集成 测试
  * 
  * @author zhangyan_g
  *
