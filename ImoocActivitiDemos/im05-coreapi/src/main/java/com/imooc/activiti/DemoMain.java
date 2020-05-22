@@ -1,22 +1,10 @@
 package com.imooc.activiti;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-
-import org.activiti.engine.FormService;
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngineConfiguration;
-import org.activiti.engine.RepositoryService;
-import org.activiti.engine.RuntimeService;
-import org.activiti.engine.TaskService;
-import org.activiti.engine.form.FormProperty;
-import org.activiti.engine.form.TaskFormData;
-import org.activiti.engine.impl.form.DateFormType;
-import org.activiti.engine.impl.form.StringFormType;
+import com.google.common.collect.Maps;
+import org.activiti.bpmn.model.FlowElement;
+import org.activiti.bpmn.model.FormProperty;
+import org.activiti.bpmn.model.UserTask;
+import org.activiti.engine.*;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.repository.ProcessDefinition;
@@ -25,7 +13,12 @@ import org.activiti.engine.task.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.collect.Maps;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * 启动类
@@ -83,17 +76,18 @@ public class DemoMain {
 
 	private static Map<String, Object> getMap(ProcessEngine processEngine, Scanner scanner, Task task)
 			throws ParseException {
-		FormService formService = processEngine.getFormService();
-		TaskFormData taskFormData = formService.getTaskFormData(task.getId());
-		List<FormProperty> formProperties = taskFormData.getFormProperties();
+		RepositoryService repositoryService = processEngine.getRepositoryService();
+		FlowElement flowElement = repositoryService.getBpmnModel(task.getProcessDefinitionId()).getFlowElement(task.getTaskDefinitionKey());
+		UserTask userTask = (UserTask) flowElement;
+		List<FormProperty> formProperties = userTask.getFormProperties();
 		Map<String, Object> variables = Maps.newHashMap();
 		for (FormProperty property : formProperties) {
 			String line = null;
-			if (StringFormType.class.isInstance(property.getType())) {
+			if ("string".equals(property.getType())) {
 				LOGGER.info("请输入 {} ？", property.getName());
 				line = scanner.nextLine();
 				variables.put(property.getId(), line);
-			} else if (DateFormType.class.isInstance(property.getType())) {
+			} else if ("date".equals(property.getType())) {
 				LOGGER.info("请输入 {} ？格式 （yyyy-MM-dd）", property.getName());
 				line = scanner.nextLine();
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

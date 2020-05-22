@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author zhangyan_g
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class Im08SpringbootApplication {
 
     public static void main(String[] args) {

@@ -64,10 +64,10 @@ public class DbHistoryTest {
 				processInstance.getId(), "record note2");
 		// 通过FormService提交表单，数据会存储在 Detail历史表中，
 		// 而使用TaskService提交则不会把数据存储在Detail历史表中
-		Map<String, String> properties = Maps.newHashMap();
+		Map<String, Object> properties = Maps.newHashMap();
 		properties.put("key2", "value2_1");
 		properties.put("key3", "value3_1");
-		activitiRule.getFormService().submitTaskFormData(task.getId(),
+		activitiRule.getTaskService().complete(task.getId(),
 				properties);
 	}
 	

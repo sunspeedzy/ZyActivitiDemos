@@ -7,7 +7,6 @@
     <property name="databaseSchemaUpdate" value="true"/>
     
     <property name="dbHistoryUsed" value="true"/>
-    <property name="dbIdentityUsed" value="true"/>
     <property name="historyLevel" value="FULL"/>
     <property name="enableDatabaseEventLogging" value="true"/>
   </bean>

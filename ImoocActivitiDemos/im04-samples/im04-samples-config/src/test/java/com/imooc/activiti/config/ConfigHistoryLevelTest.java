@@ -75,7 +75,6 @@ public class ConfigHistoryLevelTest {
 		List<HistoricDetail> historicDetailsForm = activitiRule
 				.getHistoryService()
 				.createHistoricDetailQuery()
-				.formProperties()
 				.listPage(0, 100);
 		for (HistoricDetail historicDetail : historicDetailsForm) {
 			LOGGER.info("historicDetail = {}", toString(historicDetail));
@@ -121,10 +120,10 @@ public class ConfigHistoryLevelTest {
 		Task task = activitiRule.getTaskService().createTaskQuery().singleResult();
 		// 动态传入表单参数
 		// audit HistoryLevel才会记录表单参数信息
-		Map<String, String> properties = Maps.newHashMap();
+		Map<String, Object> properties = Maps.newHashMap();
 		properties.put("formKey1", "valuef1");
 		properties.put("formKey2", "valuef2");
-		activitiRule.getFormService().submitTaskFormData(task.getId(), properties);
+		activitiRule.getTaskService().complete(task.getId(), properties);
 	}
 
 	private void changeVariable() {

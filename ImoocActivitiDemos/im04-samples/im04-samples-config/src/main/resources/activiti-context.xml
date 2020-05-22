@@ -30,7 +30,6 @@
 	<!-- 获取流程引擎中各个服务的实例，使这些服务实例暴露给Spring -->
 	<bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService"/>
 	<bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService"/>
-	<bean id="formService" factory-bean="processEngine" factory-method="getFormService"/>
 	<bean id="taskService" factory-bean="processEngine" factory-method="getTaskService"/>
 	<bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService"/>
 	<!-- 通过Spring的方式获取 ActivitiRule -->

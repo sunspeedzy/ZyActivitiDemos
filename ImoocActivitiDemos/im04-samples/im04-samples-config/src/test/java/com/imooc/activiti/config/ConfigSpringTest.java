@@ -1,6 +1,5 @@
 package com.imooc.activiti.config;
 
-import org.activiti.engine.FormService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -37,8 +36,7 @@ public class ConfigSpringTest {
 	private RuntimeService runtimeService;
 	@Autowired
 	private RepositoryService repositoryService;
-	@Autowired
-	private FormService formService;
+
 	@Autowired
 	private TaskService taskService;
 	

@@ -2,7 +2,6 @@ package org.crazyit.activiti;
 
 import org.activiti.engine.DynamicBpmnService;
 import org.activiti.engine.HistoryService;
-import org.activiti.engine.IdentityService;
 import org.activiti.engine.ManagementService;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
@@ -27,7 +26,6 @@ public class GetService {
 		RepositoryService repositoryService = engine.getRepositoryService();
 		RuntimeService runtimeService = engine.getRuntimeService();
 		TaskService taskService = engine.getTaskService();
-		IdentityService identityService = engine.getIdentityService();
 		ManagementService managementService = engine.getManagementService();
 		HistoryService historyService = engine.getHistoryService();
 		DynamicBpmnService dynamicBpmnService = engine.getDynamicBpmnService();
@@ -35,7 +33,6 @@ public class GetService {
 		System.out.println(repositoryService.getClass().getName());
 		System.out.println(runtimeService.getClass().getName());
 		System.out.println(taskService.getClass().getName());
-		System.out.println(identityService.getClass().getName());
 		System.out.println(managementService.getClass().getName());
 		System.out.println(historyService.getClass().getName());
 		System.out.println(dynamicBpmnService.getClass().getName());

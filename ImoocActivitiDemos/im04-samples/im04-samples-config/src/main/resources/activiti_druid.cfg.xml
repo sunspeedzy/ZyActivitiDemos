@@ -11,7 +11,6 @@
 		<property name="dataSource" ref="dataSourceHikari"/>
 		<!-- 是否使用历史数据和身份数据，设置为 false，则不执行相关表的DDL生成表 -->
 		<property name="dbHistoryUsed" value="false"/>
-		<property name="dbIdentityUsed" value="false"/>
 		<!-- 要执行CRUD操作的Activiti表，表名必须符合指定的前缀，适合环境中已经生成了符合前缀要求的表的情况。
 		databaseSchemaUpdate不为false时依然会生成默认名字的Activiti表 -->
 		<!-- <property name="databaseTablePrefix" value="t_"/> -->
